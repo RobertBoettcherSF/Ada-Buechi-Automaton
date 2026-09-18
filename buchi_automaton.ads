@@ -13,6 +13,9 @@ package Buchi_Automaton is
    package State_Sets is new Ada.Containers.Ordered_Sets
      (Element_Type => State_Type);
    subtype State_Set is State_Sets.Set;
+   
+   -- Make the element equality operator visible for subsequent generic instantiations
+   use type State_Sets.Set;
 
    -- Transition Key mapping a State and Symbol
    type Transition_Key is record
@@ -34,12 +37,12 @@ package Buchi_Automaton is
       Element_Type => State_Set);
 
    -- Vector of State_Sets for Generalized Büchi Automaton acceptance conditions
-   package Acceptance_Sets is new Ada.Containers.Vectors
+   package Acceptance_Set_Vectors is new Ada.Containers.Vectors
      (Index_Type   => Positive,
       Element_Type => State_Set);
 
    -- Deterministic Büchi Automaton (DBA)
-   type DBA is tagged record
+   type DBA is record
       States           : State_Set;
       Initial_State    : State_Type;
       Transitions      : DBA_Transitions.Map;
@@ -47,7 +50,7 @@ package Buchi_Automaton is
    end record;
 
    -- Nondeterministic Büchi Automaton (NBA)
-   type NBA is tagged record
+   type NBA is record
       States           : State_Set;
       Initial_States   : State_Set;
       Transitions      : NBA_Transitions.Map;
@@ -55,11 +58,11 @@ package Buchi_Automaton is
    end record;
 
    -- Generalized Büchi Automaton (GBA)
-   type GBA is tagged record
+   type GBA is record
       States           : State_Set;
       Initial_States   : State_Set;
       Transitions      : NBA_Transitions.Map;
-      Acceptance_Sets  : Acceptance_Sets.Vector;
+      Acceptance_Sets  : Acceptance_Set_Vectors.Vector;
    end record;
 
    -- Exception raised when an operation is invoked on an invalid automaton
