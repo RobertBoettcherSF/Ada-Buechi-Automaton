@@ -119,7 +119,8 @@ begin
    Exception_Caught := False;
    begin
       declare
-         Res : Boolean := Accepts_Periodic_Word (D, "a", "");
+         Res : constant Boolean := Accepts_Periodic_Word (D, "a", "");
+         pragma Unreferenced (Res);
       begin null; end;
    exception
       when Invalid_Automaton => Exception_Caught := True;
@@ -130,7 +131,8 @@ begin
    Exception_Caught := False;
    begin
       declare
-         Res : Boolean := Accepts_Periodic_Word (D2, "a", "a");
+         Res : constant Boolean := Accepts_Periodic_Word (D2, "a", "a");
+         pragma Unreferenced (Res);
       begin null; end;
    exception
       when Invalid_Automaton => Exception_Caught := True;
@@ -140,7 +142,8 @@ begin
    Exception_Caught := False;
    begin
       declare
-         Res : Boolean := Accepts_Periodic_Word (D2, "", "");
+         Res : constant Boolean := Accepts_Periodic_Word (D2, "", "");
+         pragma Unreferenced (Res);
       begin null; end;
    exception
       when Invalid_Automaton => Exception_Caught := True;
