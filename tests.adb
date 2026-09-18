@@ -194,6 +194,9 @@ begin
 
    -- TEST 10 - NBA Emptiness (Non-empty automata)
    Put_Line ("TEST 10 — NBA Emptiness (Non-empty)");
+   -- N's accepting state (2) previously had no outgoing transitions, making the language empty.
+   -- We add a transition back to 1 to establish a valid cycle infinitely visiting state 2.
+   Add_NBA_Trans (N, 2, 'b', 1);
    Check ("10.1 Nondeterministic paths finding cycle", not Is_Empty (N));
 
    N2 := To_NBA (D);
