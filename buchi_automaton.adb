@@ -230,7 +230,6 @@ package body Buchi_Automaton is
    function To_NBA (A : GBA) return NBA is
       Result : NBA;
       K      : constant Natural := Natural (A.Acceptance_Sets.Length);
-      Max_Q  : State_Type := 1;
 
       -- Maps a state Q in level I to a unique integer
       function Map_State (S : State_Type; I : Positive) return State_Type is
